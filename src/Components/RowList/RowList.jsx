@@ -2,7 +2,11 @@ import EditRow from "./EditRow";
 import Row from "./Row";
 
 export default function RowList() {
-  // const [resArr, setResArr] = useState()
+  // async function handleAddRow(rowObj) {
+  //   await Supase.post(rowObj);
+  //   const res = await Supabase.getAll();
+  //   setState(res);
+  // }
 
   return (
     <div>

@@ -9,6 +9,7 @@ export default function TopRow() {
       <div>Hours</div>
       <div>Task</div>
       <div>Date Completed</div>
+      <div></div>
     </div>
   );
 }
