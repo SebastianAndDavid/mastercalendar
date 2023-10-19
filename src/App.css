@@ -7,6 +7,11 @@
   margin-top: 20em;
 }
 
+.app {
+  display: grid;
+  grid-template-columns: 65% 35%;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -14,7 +19,6 @@ header {
   width: 100vw;
 }
 
-.app {
-  display: grid;
-  grid-template-columns: 65% 35%;
+.calendar-container {
+  border: 2px solid saddlebrown;
 }
