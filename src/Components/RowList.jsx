@@ -1,3 +1,13 @@
+import EditRow from "./EditRow";
+import Row from "./Row";
+
 export default function RowList() {
-  return <div></div>;
+  // const [resArr, setResArr] = useState()
+
+  return (
+    <div>
+      <Row />
+      <EditRow />
+    </div>
+  );
 }

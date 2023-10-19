@@ -1,3 +1,9 @@
+import Card from "./Card";
+
 export default function CardList() {
-  return <div></div>;
+  return (
+    <div>
+      <Card />
+    </div>
+  );
 }

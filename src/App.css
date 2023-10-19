@@ -1,6 +1,20 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  position: fixed;
+  height: 100%;
+  margin-top: 20em;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  border: 2px solid coral;
+  width: 100vw;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 65% 35%;
 }
