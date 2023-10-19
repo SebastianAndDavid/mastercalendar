@@ -1,0 +1,8 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.row div {
+  border: 1px solid teal;
+  height: 20px;
+}

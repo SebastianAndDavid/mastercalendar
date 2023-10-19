@@ -1,6 +1,6 @@
 import "./App.css";
 import CardList from "./Components/CardList";
-import RowList from "./Components/RowList";
+import RowList from "./Components/RowList/RowList";
 import TopRow from "./Components/TopRow/TopRow";
 
 function App() {
