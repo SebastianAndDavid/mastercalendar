@@ -1,21 +1,17 @@
 import EditRow from "./EditRow";
 import Row from "./Row";
-import { addRow, getAll } from "../../supabase-utils";
 import { useState } from "react";
-import { handleRestructureResponse } from "../../data";
 
 export default function RowList() {
   const [responseArray, setResponseArray] = useState([]);
-  async function handleAddRow(rowObj) {
-    await addRow(rowObj);
-    const res = await getAll();
-    const restructuredRes = handleRestructureResponse(res);
-    setResponseArray(restructuredRes);
-  }
+
+  console.log("responseArray", responseArray);
   return (
     <div>
-      <Row />
-      <EditRow handleAddRow={handleAddRow} />
+      {responseArray.map((responseObj) => {
+        return <Row key={responseObj.job.id} obj={responseObj} />;
+      })}
+      <EditRow setResponseArray={setResponseArray} />
     </div>
   );
 }

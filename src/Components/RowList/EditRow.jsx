@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { addRow, getAll } from "../../supabase-utils";
+import { handleRestructureResponse } from "../../data";
 
 // eslint-disable-next-line react/prop-types
-export default function EditRow({ handleAddRow }) {
+export default function EditRow({ setResponseArray }) {
   const [job, setJob] = useState("");
   const [phase, setPhase] = useState("");
   const [teamMember, setTeamMember] = useState("");
@@ -9,14 +11,20 @@ export default function EditRow({ handleAddRow }) {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
 
-  const rowObj = {
-    job,
-    phase,
-    teamMember,
-    hours,
-    task,
-    date,
-  };
+  async function handleAddRow() {
+    const rowObj = {
+      job,
+      phase,
+      teamMember,
+      hours,
+      task,
+      date,
+    };
+    await addRow(rowObj);
+    const res = await getAll();
+    const restructuredRes = handleRestructureResponse(res);
+    setResponseArray(restructuredRes);
+  }
 
   return (
     <div className="row" id="edit-row">
@@ -46,7 +54,7 @@ export default function EditRow({ handleAddRow }) {
         onChange={(e) => setDate(e.target.value)}
         type="text"
       />
-      <button onClick={() => handleAddRow(rowObj)}>Add Row</button>
+      <button onClick={() => handleAddRow()}>Add Row</button>
     </div>
   );
 }
