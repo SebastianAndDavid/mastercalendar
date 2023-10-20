@@ -1,17 +1,17 @@
 import EditRow from "./EditRow";
 import Row from "./Row";
+import { useState } from "react";
 
 export default function RowList() {
-  // async function handleAddRow(rowObj) {
-  //   await Supase.post(rowObj);
-  //   const res = await Supabase.getAll();
-  //   setState(res);
-  // }
+  const [responseArray, setResponseArray] = useState([]);
 
+  console.log("responseArray", responseArray);
   return (
     <div>
-      <Row />
-      <EditRow />
+      {responseArray.map((responseObj) => {
+        return <Row key={responseObj.job.id} obj={responseObj} />;
+      })}
+      <EditRow setResponseArray={setResponseArray} />
     </div>
   );
 }
