@@ -1,4 +1,4 @@
-function handleResponse(response) {
+function handleRestructureResponse(response) {
   return response.map((res) => {
     const responseObj = {
       job: {
@@ -30,4 +30,4 @@ function handleResponse(response) {
   });
 }
 
-export { handleResponse };
+export { handleRestructureResponse };
