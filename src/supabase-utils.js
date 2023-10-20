@@ -6,30 +6,30 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(url, key);
 
-async function addRow() {
+async function addRow(rowObj) {
   const jobRes = await supabase
     .from("jobs")
-    .insert({ job_name: "vladiasdflkasjdf" })
+    .insert({ job_name: rowObj.job })
     .select();
   const teamRes = await supabase
     .from("team_members")
-    .insert({ name: "tootiesrs " })
+    .insert({ name: rowObj.teamMember })
     .select();
   const phaseRes = await supabase
     .from("phases")
-    .insert({ phase_name: "secnon", job_id: jobRes.data[0].id })
+    .insert({ phase_name: rowObj.phase, job_id: jobRes.data[0].id })
     .select();
   const taskRes = await supabase
     .from("tasks")
-    .insert({ task_name: "pick up poop", phase_id: phaseRes.data[0].id })
+    .insert({ task_name: rowObj.task, phase_id: phaseRes.data[0].id })
     .select();
   await supabase
     .from("completion_date")
-    .insert({ date: "22323", task_id: taskRes.data[0].id });
+    .insert({ date: rowObj.date, task_id: taskRes.data[0].id });
   const hoursRes = await supabase
     .from("hours")
     .insert({
-      estimated_hours: 88,
+      estimated_hours: rowObj.hours,
       member_id: teamRes.data[0].id,
       task_id: taskRes.data[0].id,
     })
