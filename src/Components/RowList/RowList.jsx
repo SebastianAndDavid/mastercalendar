@@ -1,10 +1,11 @@
 import EditRow from "./EditRow";
 import Row from "./Row";
-import { addRow } from "../../supabase-utils";
+import { addRow, getAll } from "../../supabase-utils";
 
 export default function RowList() {
   async function handleAddRow() {
-    await addRow();
+    // await addRow();
+    await getAll();
   }
   handleAddRow();
   return (

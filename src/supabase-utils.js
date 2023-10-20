@@ -37,4 +37,13 @@ async function addRow() {
   return hoursRes;
 }
 
-export { addRow };
+async function getAll() {
+  const { data } = await supabase.from("jobs").select(`
+  id,
+  job_name,
+  phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`);
+  console.log("data", data);
+  return data;
+}
+
+export { addRow, getAll };
