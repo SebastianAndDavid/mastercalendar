@@ -24,6 +24,12 @@ export default function EditRow({ setResponseArray }) {
     const res = await getAll();
     const restructuredRes = handleRestructureResponse(res);
     setResponseArray(restructuredRes);
+    setJob("");
+    setPhase("");
+    setTask("");
+    setTeamMember("");
+    setHours("");
+    setDate("");
   }
 
   return (

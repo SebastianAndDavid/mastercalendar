@@ -7,7 +7,7 @@ function handleRestructureResponse(response) {
       },
       phase: {
         id: res.phases[0].id,
-        phase_name: res.phases[0].phase_name,
+        name: res.phases[0].phase_name,
       },
       task: {
         id: res.phases[0].tasks[0].id,
