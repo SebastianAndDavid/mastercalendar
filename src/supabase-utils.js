@@ -42,7 +42,6 @@ async function getAll() {
   id,
   job_name,
   phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`);
-  console.log("data", data);
   return data;
 }
 
