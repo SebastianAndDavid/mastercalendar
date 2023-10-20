@@ -1,0 +1,7 @@
+.toprow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.toprow div {
+  border: 1px solid teal;
+}

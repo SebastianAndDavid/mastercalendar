@@ -1,0 +1,11 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.row div {
+  border: 1px solid teal;
+}
+
+.row input {
+  border: 1px solid teal;
+}
