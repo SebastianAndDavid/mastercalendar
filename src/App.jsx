@@ -1,22 +1,32 @@
+import { useState } from "react";
 import "./App.css";
-import CardList from "./Components/CardList/CardList";
 import RowList from "./Components/RowList/RowList";
 import TopRow from "./Components/TopRow/TopRow";
+import JobList from "./Components/JobList/JobList";
 
 function App() {
+  const [toggleDetail, setToggleDetail] = useState(false);
   return (
     <>
       <header>
         <h1>Taskify</h1>
+        {toggleDetail ? (
+          <button onClick={() => setToggleDetail(false)}>Show Details</button>
+        ) : (
+          <button onClick={() => setToggleDetail(true)}>Show List</button>
+        )}
       </header>
       <div className="app">
-        <div className="calendar-container">
-          <TopRow />
-          <RowList />
-        </div>
-        <div className="card-container">
-          <CardList />
-        </div>
+        {toggleDetail ? (
+          <div className="calendar-container">
+            <TopRow />
+            <RowList />
+          </div>
+        ) : (
+          <div className="joblist-container">
+            <JobList />
+          </div>
+        )}
         <footer>
           <nav className="nav-container">
             <section className="delete">
