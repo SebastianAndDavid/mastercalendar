@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
+import { deleteRow } from "../../supabase-utils";
 import "./Row.css";
 export default function Row({ obj }) {
-  console.log("obj", obj);
   return (
     <div className="row" id="row">
       <div>{obj.job.job}</div>
@@ -11,6 +11,7 @@ export default function Row({ obj }) {
       <div>{obj.task.name}</div>
       <div>{obj.date.date}</div>
       <button>Edit</button>
+      <button onClick={() => deleteRow()}>Delete</button>
     </div>
   );
 }

@@ -20,16 +20,21 @@ export default function EditRow({ setResponseArray }) {
       task,
       date,
     };
-    await addRow(rowObj);
-    const res = await getAll();
-    const restructuredRes = handleRestructureResponse(res);
-    setResponseArray(restructuredRes);
-    setJob("");
-    setPhase("");
-    setTask("");
-    setTeamMember("");
-    setHours("");
-    setDate("");
+    if (Object.values(rowObj).every((prop) => prop)) {
+      await addRow(rowObj);
+      const res = await getAll();
+      const restructuredRes = handleRestructureResponse(res);
+      setResponseArray(restructuredRes);
+
+      setJob("");
+      setPhase("");
+      setTask("");
+      setTeamMember("");
+      setHours("");
+      setDate("");
+    } else {
+      alert("All fields are required");
+    }
   }
 
   return (

@@ -5,6 +5,7 @@
   position: fixed;
   height: 100%;
   margin-top: 20em;
+  font-family: Open Sans;
 }
 
 .app {
@@ -15,8 +16,42 @@
 header {
   position: fixed;
   top: 0;
-  border: 2px solid coral;
   width: 100vw;
+  background-color: #96efda;
+}
+
+footer {
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  place-content: center;
+  position: fixed;
+  width: 100%;
+  background-color: #7cc9b7;
+  height: 3.4vh;
+}
+
+.nav-container {
+  display: flex;
+}
+
+section {
+  height: 5vh;
+  margin-left: 4em;
+  margin-right: 4em;
+  cursor: pointer;
+}
+
+section p {
+  font-size: x-small;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.nav-container img {
+  height: 3vh;
 }
 
 .calendar-container {
