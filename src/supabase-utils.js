@@ -6,6 +6,12 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(url, key);
 
+async function addJob(job) {
+  const jobRes = await supabase.from("jobs").insert({ job_name: job }).select();
+  console.log("jobRes", jobRes);
+  return jobRes;
+}
+
 async function addRow(rowObj) {
   const jobRes = await supabase
     .from("jobs")
@@ -51,4 +57,4 @@ async function deleteRow() {
   return error;
 }
 
-export { addRow, getAll, deleteRow };
+export { addRow, getAll, deleteRow, addJob };

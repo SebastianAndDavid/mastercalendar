@@ -1,5 +1,6 @@
 .job-input {
   display: flex;
+  margin-top: 3em;
 }
 .job-input input {
   height: 39.2px;
