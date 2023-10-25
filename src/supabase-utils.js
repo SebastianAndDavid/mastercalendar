@@ -45,4 +45,10 @@ async function getAll() {
   return data;
 }
 
-export { addRow, getAll };
+async function deleteRow() {
+  const { error } = await supabase.from("jobs").delete().eq("id", "141");
+  console.log("error", error);
+  return error;
+}
+
+export { addRow, getAll, deleteRow };
