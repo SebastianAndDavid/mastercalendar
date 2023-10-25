@@ -30,4 +30,24 @@ function handleRestructureResponse(response) {
   });
 }
 
-export { handleRestructureResponse };
+function handleJobListResponse(response) {
+  return response.map((res) => {
+    const responseObj = {
+      job: {
+        id: res.id,
+        job: res.job_name,
+      },
+      phase: {
+        id: res.phases[0]?.id,
+        name: res.phases[0]?.phase_name,
+      },
+      members: {
+        id: res.phases[0]?.tasks[0]?.hours[0]?.team_members.id,
+        member: res.phases[0]?.tasks[0]?.hours[0]?.team_members.name,
+      },
+    };
+    return responseObj;
+  });
+}
+
+export { handleRestructureResponse, handleJobListResponse };

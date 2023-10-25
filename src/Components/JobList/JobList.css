@@ -1,0 +1,24 @@
+.job-input {
+  display: flex;
+  margin-top: 3em;
+}
+.job-input input {
+  height: 39.2px;
+  width: 10vw;
+  margin-right: 3px;
+  border-radius: 8px;
+}
+
+.jobcards-container {
+  display: flex;
+  margin-top: 17.5vh;
+}
+.jobcard {
+  height: 25vh;
+  width: 15vw;
+  background-color: cornsilk;
+  margin: 10px;
+}
+.jobcard:hover {
+  cursor: pointer;
+}
