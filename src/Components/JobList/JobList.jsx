@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import JobCard from "./JobCard";
 import "./JobList.css";
 import { addJob, getAll } from "../../supabase-utils";
 import { handleJobListResponse } from "../../data";
 
-export default function JobList() {
+export default function JobList({ handleGetJobByID }) {
   const [inputValue, setInputValue] = useState("");
   const [jobResponse, setJobResponse] = useState([]);
   console.log("jobResponse", jobResponse);
@@ -33,7 +34,13 @@ export default function JobList() {
       </div>
       <div className="jobcards-container">
         {jobResponse.map((job) => {
-          return <JobCard key={job.id} job={job} />;
+          return (
+            <JobCard
+              key={job.id}
+              job={job}
+              handleGetJobByID={handleGetJobByID}
+            />
+          );
         })}
       </div>
     </>

@@ -12,6 +12,12 @@ async function addJob(job) {
   return jobRes;
 }
 
+async function getJobByID(id) {
+  const res = await supabase.from("jobs").select("*").eq("id", id);
+  console.log("res", res);
+  return res;
+}
+
 async function addRow(rowObj) {
   const jobRes = await supabase
     .from("jobs")
@@ -57,4 +63,4 @@ async function deleteRow() {
   return error;
 }
 
-export { addRow, getAll, deleteRow, addJob };
+export { addRow, getAll, deleteRow, addJob, getJobByID };

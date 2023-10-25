@@ -5,7 +5,6 @@ import { useState } from "react";
 export default function RowList() {
   const [responseArray, setResponseArray] = useState([]);
 
-  console.log("responseArray", responseArray);
   return (
     <div>
       {responseArray.map((responseObj) => {

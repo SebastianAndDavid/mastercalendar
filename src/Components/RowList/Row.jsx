@@ -11,7 +11,7 @@ export default function Row({ obj }) {
       <div>{obj.task.name}</div>
       <div>{obj.date.date}</div>
       <button>Edit</button>
-      <button onClick={() => deleteRow()}>Delete</button>
+      {/* <button onClick={() => deleteRow()}>Delete</button> */}
     </div>
   );
 }

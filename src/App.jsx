@@ -3,10 +3,16 @@ import "./App.css";
 import RowList from "./Components/RowList/RowList";
 import TopRow from "./Components/TopRow/TopRow";
 import JobList from "./Components/JobList/JobList";
-import { deleteRow } from "./supabase-utils";
+import { getJobByID } from "./supabase-utils";
 
 function App() {
   const [toggleDetail, setToggleDetail] = useState(false);
+
+  async function handleGetJobByID(id) {
+    //will pass down to JobList
+    const res = await getJobByID(id);
+    return res;
+  }
   return (
     <>
       <header>
@@ -25,12 +31,12 @@ function App() {
           </div>
         ) : (
           <div className="joblist-container">
-            <JobList />
+            <JobList handleGetJobByID={handleGetJobByID} />
           </div>
         )}
         <footer>
           <nav className="nav-container">
-            <section className="delete" onClick={() => deleteRow()}>
+            <section className="delete">
               <img
                 src="https://img.icons8.com/?size=50&id=11705&format=png"
                 alt=""
