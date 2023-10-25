@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>The Design Roadmap Master Calendar</h1>
+        <h1>Taskify</h1>
       </header>
       <div className="app">
         <div className="calendar-container">
