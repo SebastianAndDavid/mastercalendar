@@ -7,3 +7,14 @@
   margin-right: 3px;
   border-radius: 8px;
 }
+
+.jobcards-container {
+  display: flex;
+  margin-top: 17.5vh;
+}
+.jobcard {
+  height: 25vh;
+  width: 15vw;
+  background-color: cornsilk;
+  margin: 10px;
+}
