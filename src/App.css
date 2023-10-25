@@ -4,18 +4,14 @@
   text-align: center;
   position: fixed;
   height: 100%;
-  margin-top: 20em;
   font-family: Open Sans;
 }
 
 .app {
-  display: grid;
-  grid-template-columns: 65% 35%;
+  height: 100%;
 }
 
 header {
-  position: fixed;
-  top: 0;
   width: 100vw;
   background-color: #96efda;
   display: flex;
@@ -57,4 +53,10 @@ section p {
 
 .calendar-container {
   border: 2px solid saddlebrown;
+}
+
+.joblist-container {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
 }

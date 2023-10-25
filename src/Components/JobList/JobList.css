@@ -1,0 +1,9 @@
+.job-input {
+  display: flex;
+}
+.job-input input {
+  height: 39.2px;
+  width: 10vw;
+  margin-right: 3px;
+  border-radius: 8px;
+}
