@@ -3,6 +3,7 @@ import "./App.css";
 import RowList from "./Components/RowList/RowList";
 import TopRow from "./Components/TopRow/TopRow";
 import JobList from "./Components/JobList/JobList";
+import { deleteRow } from "./supabase-utils";
 
 function App() {
   const [toggleDetail, setToggleDetail] = useState(false);
@@ -29,7 +30,7 @@ function App() {
         )}
         <footer>
           <nav className="nav-container">
-            <section className="delete">
+            <section className="delete" onClick={() => deleteRow()}>
               <img
                 src="https://img.icons8.com/?size=50&id=11705&format=png"
                 alt=""

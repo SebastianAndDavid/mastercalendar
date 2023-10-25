@@ -19,3 +19,6 @@
   background-color: cornsilk;
   margin: 10px;
 }
+.jobcard:hover {
+  cursor: pointer;
+}

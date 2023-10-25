@@ -1,14 +1,24 @@
 import { useState } from "react";
 import JobCard from "./JobCard";
 import "./JobList.css";
-import { addJob } from "../../supabase-utils";
+import { addJob, getAll } from "../../supabase-utils";
+import { handleJobListResponse } from "../../data";
 
 export default function JobList() {
   const [inputValue, setInputValue] = useState("");
+  const [jobResponse, setJobResponse] = useState([]);
+  console.log("jobResponse", jobResponse);
+
+  async function handleJobResponse() {
+    const response = await getAll();
+    const updatedRes = await handleJobListResponse(response);
+    setJobResponse(updatedRes);
+  }
 
   async function handleAddJob() {
     await addJob(inputValue);
     setInputValue("");
+    handleJobResponse();
   }
 
   return (
@@ -22,11 +32,9 @@ export default function JobList() {
         <button onClick={() => handleAddJob()}>Add</button>
       </div>
       <div className="jobcards-container">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        {jobResponse.map((job) => {
+          return <JobCard key={job.id} job={job} />;
+        })}
       </div>
     </>
   );
