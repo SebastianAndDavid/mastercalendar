@@ -5,7 +5,7 @@ import "./JobList.css";
 import { addJob, getAll } from "../../supabase-utils";
 import { handleJobListResponse } from "../../data";
 
-export default function JobList({ handleGetJobByID }) {
+export default function JobList({ handleGetJobByID, setResponse }) {
   const [inputValue, setInputValue] = useState("");
   const [jobResponse, setJobResponse] = useState([]);
 
@@ -42,6 +42,7 @@ export default function JobList({ handleGetJobByID }) {
               key={job.id}
               job={job}
               handleGetJobByID={handleGetJobByID}
+              setResponse={setResponse}
             />
           );
         })}

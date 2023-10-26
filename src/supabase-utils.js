@@ -61,7 +61,8 @@ async function getAll() {
   const { data } = await supabase.from("jobs").select(`
   id,
   job_name,
-  phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`);
+  phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))
+  `);
   return data;
 }
 

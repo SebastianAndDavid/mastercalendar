@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { addRow, getAllByJobID } from "../../supabase-utils";
 
-export default function EditRow({ setResponseArray, jobByID }) {
+export default function EditRow({ setResponse, jobByID }) {
   const [phase, setPhase] = useState("");
   const [teamMember, setTeamMember] = useState("");
   const [hours, setHours] = useState("");
@@ -22,8 +22,7 @@ export default function EditRow({ setResponseArray, jobByID }) {
     if (Object.values(rowObj).every((prop) => prop)) {
       await addRow(jobID, rowObj);
       const res = await getAllByJobID(jobID);
-      console.log("res", res);
-      setResponseArray(res);
+      setResponse(res);
 
       setPhase("");
       setTask("");

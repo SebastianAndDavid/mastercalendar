@@ -8,11 +8,13 @@ import { getJobByID } from "./supabase-utils";
 function App() {
   const [toggleDetail, setToggleDetail] = useState(false);
   const [jobByID, setJobByID] = useState({});
+  const [response, setResponse] = useState({});
+
+  console.log("jobByID", jobByID);
 
   async function handleGetJobByID(id) {
     const res = await getJobByID(id);
     setJobByID(res);
-    console.log("jobByID", jobByID);
     setToggleDetail(true);
     return res;
   }
@@ -31,13 +33,18 @@ function App() {
           <div className="calendar-container">
             <h2>{jobByID.data && jobByID.data[0].job_name}</h2>
             <TopRow />
-            <RowList jobByID={jobByID} />
+            <RowList
+              jobByID={jobByID}
+              response={response}
+              setResponse={setResponse}
+            />
           </div>
         ) : (
           <div className="joblist-container">
             <JobList
               handleGetJobByID={handleGetJobByID}
               setToggleDetail={setToggleDetail}
+              setResponse={setResponse}
             />
           </div>
         )}

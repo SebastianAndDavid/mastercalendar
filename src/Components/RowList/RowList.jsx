@@ -2,18 +2,19 @@
 import {} from "../../supabase-utils";
 import EditRow from "./EditRow";
 import Row from "./Row";
-import { useState } from "react";
 
-export default function RowList({ jobByID }) {
-  const [responseArray, setResponseArray] = useState({});
-  console.log("responseArray.data[0].phases", responseArray);
+export default function RowList({ jobByID, response, setResponse }) {
+  console.log("response", response);
+
+  const phasesArray = response.data[0].phases;
+  console.log("response.data[0].phases", phasesArray);
 
   return (
     <div>
-      {/* {responseArray.data[0].phases.map((responseObj) => {
-        return <Row key={responseObj.job.id} obj={responseObj} />;
-      })} */}
-      <EditRow setResponseArray={setResponseArray} jobByID={jobByID} />
+      {phasesArray.map((phase) => {
+        return <Row key={phase.id} phase={phase} />;
+      })}
+      <EditRow setResponse={setResponse} jobByID={jobByID} />
     </div>
   );
 }

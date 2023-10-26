@@ -1,8 +1,10 @@
-import { deleteByID } from "../../supabase-utils";
+import { deleteByID, getAllByJobID } from "../../supabase-utils";
 
 /* eslint-disable react/prop-types */
-export default function JobCard({ job, handleGetJobByID }) {
-  function handleClick() {
+export default function JobCard({ job, handleGetJobByID, setResponse }) {
+  async function handleClick() {
+    const res = await getAllByJobID(job.job.id);
+    setResponse(res);
     handleGetJobByID(job.job.id);
   }
 
