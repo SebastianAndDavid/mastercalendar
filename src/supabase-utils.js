@@ -8,15 +8,23 @@ const supabase = createClient(url, key);
 
 async function addJob(job) {
   const jobRes = await supabase.from("jobs").insert({ job_name: job }).select();
-  console.log("jobRes", jobRes);
   return jobRes;
 }
 
 async function getJobByID(id) {
   const res = await supabase.from("jobs").select("*").eq("id", id);
-  console.log("res", res);
   return res;
 }
+
+// async function getRowByJobID(id) {
+//   const res = await supabase
+//     .from("jobs")
+//     .select(
+//       `phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`
+//     )
+//     .eq("id", id);
+//   return res;
+// }
 
 async function addRow(rowObj) {
   const jobRes = await supabase
@@ -57,10 +65,9 @@ async function getAll() {
   return data;
 }
 
-async function deleteRow() {
-  const { error } = await supabase.from("jobs").delete().eq("id", "141");
-  console.log("error", error);
+async function deleteByID(id) {
+  const { error } = await supabase.from("jobs").delete().eq("id", id);
   return error;
 }
 
-export { addRow, getAll, deleteRow, addJob, getJobByID };
+export { addRow, getAll, deleteByID, addJob, getJobByID };

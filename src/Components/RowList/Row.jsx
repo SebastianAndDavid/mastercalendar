@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { deleteRow } from "../../supabase-utils";
+// import { deleteByID } from "../../supabase-utils";
 import "./Row.css";
 export default function Row({ obj }) {
   return (
@@ -11,7 +11,7 @@ export default function Row({ obj }) {
       <div>{obj.task.name}</div>
       <div>{obj.date.date}</div>
       <button>Edit</button>
-      {/* <button onClick={() => deleteRow()}>Delete</button> */}
+      {/* <button onClick={() => deleteByID()}>Delete</button> */}
     </div>
   );
 }
