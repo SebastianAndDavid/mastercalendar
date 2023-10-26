@@ -23,3 +23,8 @@ Data
 Jobs => Phases => Tasks => Completion Date + Hours => Team Members
 
 We can shape our data how we want - make mapping easier - data.js restructure (munging)
+
+WIP
+
+- Edit/update (back/front)
+- List to display jobcards w/ extra info
