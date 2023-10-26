@@ -4,7 +4,7 @@ import EditRow from "./EditRow";
 import Row from "./Row";
 import { useState } from "react";
 
-export default function RowList() {
+export default function RowList({ jobByID }) {
   const [responseArray, setResponseArray] = useState([]);
   // const [responseArrayByJobID, setResponseArrayByJobID] = useState([]);
 
@@ -27,7 +27,7 @@ export default function RowList() {
       {/* {responseArrayByJobID.map((responseObj) => {
         return <Row key={responseObj.job.id} obj={responseObj} />;
       })} */}
-      <EditRow setResponseArray={setResponseArray} />
+      <EditRow setResponseArray={setResponseArray} jobByID={jobByID} />
     </div>
   );
 }

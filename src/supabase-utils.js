@@ -12,32 +12,32 @@ async function addJob(job) {
 }
 
 async function getJobByID(id) {
-  const res = await supabase.from("jobs").select("*").eq("id", id);
-  return res;
+  const { data } = await supabase.from("jobs").select("*").eq("id", id);
+  return { data };
 }
 
-// async function getRowByJobID(id) {
-//   const res = await supabase
-//     .from("jobs")
-//     .select(
-//       `phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`
-//     )
-//     .eq("id", id);
-//   return res;
-// }
-
-async function addRow(rowObj) {
-  const jobRes = await supabase
+async function getAllByJobID(id) {
+  const { data } = await supabase
     .from("jobs")
-    .insert({ job_name: rowObj.job })
-    .select();
+    .select(
+      `
+    id,
+    job_name,
+    phases:phases (id, phase_name, tasks:tasks (id, task_name, hours:hours (id, estimated_hours, team_members:team_members (id, name)), completion_date:completion_date (id, date)))
+  `
+    )
+    .eq("id", id);
+  return { data };
+}
+
+async function addRow(jobID, rowObj) {
   const teamRes = await supabase
     .from("team_members")
     .insert({ name: rowObj.teamMember })
     .select();
   const phaseRes = await supabase
     .from("phases")
-    .insert({ phase_name: rowObj.phase, job_id: jobRes.data[0].id })
+    .insert({ phase_name: rowObj.phase, job_id: jobID })
     .select();
   const taskRes = await supabase
     .from("tasks")
@@ -70,4 +70,4 @@ async function deleteByID(id) {
   return error;
 }
 
-export { addRow, getAll, deleteByID, addJob, getJobByID };
+export { addRow, getAll, deleteByID, addJob, getJobByID, getAllByJobID };

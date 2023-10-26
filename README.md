@@ -13,3 +13,13 @@ JobList
   - probably defined in app
 - make a get call to supabase with that job id
 - with that response, display a row list
+
+Row component
+
+- for each phase, map over and display it's data
+
+Data
+
+Jobs => Phases => Tasks => Completion Date + Hours => Team Members
+
+We can shape our data how we want - make mapping easier - data.js restructure (munging)

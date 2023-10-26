@@ -7,11 +7,13 @@ import { getJobByID } from "./supabase-utils";
 
 function App() {
   const [toggleDetail, setToggleDetail] = useState(false);
-  const [jobByID, setJobByID] = useState(0);
+  const [jobByID, setJobByID] = useState({});
 
   async function handleGetJobByID(id) {
     const res = await getJobByID(id);
     setJobByID(res);
+    console.log("jobByID", jobByID);
+    setToggleDetail(true);
     return res;
   }
   return (
@@ -27,7 +29,7 @@ function App() {
       <div className="app">
         {toggleDetail ? (
           <div className="calendar-container">
-            <h2>{jobByID !== 0 && jobByID?.data[0]?.job_name}</h2>
+            <h2>{jobByID.data && jobByID.data[0].job_name}</h2>
             <TopRow />
             <RowList jobByID={jobByID} />
           </div>

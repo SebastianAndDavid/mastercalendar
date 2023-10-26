@@ -1,10 +1,9 @@
 import { deleteByID } from "../../supabase-utils";
 
 /* eslint-disable react/prop-types */
-export default function JobCard({ job, handleGetJobByID, setToggleDetail }) {
+export default function JobCard({ job, handleGetJobByID }) {
   function handleClick() {
     handleGetJobByID(job.job.id);
-    setToggleDetail(true);
   }
 
   return (
