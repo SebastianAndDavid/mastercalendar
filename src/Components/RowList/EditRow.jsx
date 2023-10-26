@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { addRow, getAllByJobID } from "../../supabase-utils";
+import {
+  addRow,
+  getAllByJobID,
+  getAllPhasesByJobID,
+} from "../../supabase-utils";
 
 export default function EditRow({ setResponse, jobByID }) {
   const [phase, setPhase] = useState("");
@@ -19,6 +23,12 @@ export default function EditRow({ setResponse, jobByID }) {
       task,
       date,
     };
+
+    const phaseNameArray = await getAllPhasesByJobID(jobID);
+    if (phaseNameArray.includes(phase)) {
+      return alert("Phase already exists");
+    }
+
     if (Object.values(rowObj).every((prop) => prop)) {
       await addRow(jobID, rowObj);
       const res = await getAllByJobID(jobID);

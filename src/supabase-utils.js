@@ -13,6 +13,7 @@ async function addJob(job) {
 
 async function getJobByID(id) {
   const { data } = await supabase.from("jobs").select("*").eq("id", id);
+
   return { data };
 }
 
@@ -28,6 +29,12 @@ async function getAllByJobID(id) {
     )
     .eq("id", id);
   return { data };
+}
+
+async function getAllPhasesByJobID(id) {
+  const { data } = await supabase.from("phases").select("*").eq("job_id", id);
+  const res = data.map((datum) => datum.phase_name);
+  return res;
 }
 
 async function addRow(jobID, rowObj) {
@@ -71,4 +78,12 @@ async function deleteByID(id) {
   return error;
 }
 
-export { addRow, getAll, deleteByID, addJob, getJobByID, getAllByJobID };
+export {
+  addRow,
+  getAll,
+  deleteByID,
+  addJob,
+  getJobByID,
+  getAllByJobID,
+  getAllPhasesByJobID,
+};
