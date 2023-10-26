@@ -5,17 +5,14 @@ export default function Row({ phase }) {
   console.log("phase", phase);
   return (
     <div className="row" id="row">
-      {/* <div>{obj.phase.name}</div> */}
-      {/* map over each member */}
-      {/* <div>{obj.members.member}</div> */}
-      {/* map over */}
-      {/* <div>{obj.hours.hours}</div> */}
-      {/* map */}
-      {/* <div>{obj.task.name}</div> */}
-      {/* map */}
-      {/* <div>{obj.date.date}</div> */}
-      <button>Edit</button>
-      {/* <button onClick={() => deleteByID()}>Delete</button> */}
+      <div>{phase.phase_name}</div>
+      <div>Team member</div>
+      <div>hours</div>
+      <div>
+        {phase.tasks.map((task) => {
+          return <p key={task.id}>{task.task_name}</p>;
+        })}
+      </div>
     </div>
   );
 }
