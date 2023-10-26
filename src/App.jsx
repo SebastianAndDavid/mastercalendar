@@ -3,10 +3,21 @@ import "./App.css";
 import RowList from "./Components/RowList/RowList";
 import TopRow from "./Components/TopRow/TopRow";
 import JobList from "./Components/JobList/JobList";
-import { deleteRow } from "./supabase-utils";
+import { getJobByID } from "./supabase-utils";
 
 function App() {
   const [toggleDetail, setToggleDetail] = useState(false);
+  const [jobByID, setJobByID] = useState({});
+  const [response, setResponse] = useState({});
+
+  console.log("jobByID", jobByID);
+
+  async function handleGetJobByID(id) {
+    const res = await getJobByID(id);
+    setJobByID(res);
+    setToggleDetail(true);
+    return res;
+  }
   return (
     <>
       <header>
@@ -20,17 +31,26 @@ function App() {
       <div className="app">
         {toggleDetail ? (
           <div className="calendar-container">
+            <h2>{jobByID.data && jobByID.data[0].job_name}</h2>
             <TopRow />
-            <RowList />
+            <RowList
+              jobByID={jobByID}
+              response={response}
+              setResponse={setResponse}
+            />
           </div>
         ) : (
           <div className="joblist-container">
-            <JobList />
+            <JobList
+              handleGetJobByID={handleGetJobByID}
+              setToggleDetail={setToggleDetail}
+              setResponse={setResponse}
+            />
           </div>
         )}
         <footer>
           <nav className="nav-container">
-            <section className="delete" onClick={() => deleteRow()}>
+            <section className="delete">
               <img
                 src="https://img.icons8.com/?size=50&id=11705&format=png"
                 alt=""

@@ -8,22 +8,43 @@ const supabase = createClient(url, key);
 
 async function addJob(job) {
   const jobRes = await supabase.from("jobs").insert({ job_name: job }).select();
-  console.log("jobRes", jobRes);
   return jobRes;
 }
 
-async function addRow(rowObj) {
-  const jobRes = await supabase
+async function getJobByID(id) {
+  const { data } = await supabase.from("jobs").select("*").eq("id", id);
+
+  return { data };
+}
+
+async function getAllByJobID(id) {
+  const { data } = await supabase
     .from("jobs")
-    .insert({ job_name: rowObj.job })
-    .select();
+    .select(
+      `
+      id,
+      job_name,
+      phases:phases (id, phase_name, tasks:tasks (id, task_name, hours:hours (id, estimated_hours, team_members:team_members (id, name)), completion_date:completion_date (id, date)))
+    `
+    )
+    .eq("id", id);
+  return { data };
+}
+
+async function getAllPhasesByJobID(id) {
+  const { data } = await supabase.from("phases").select("*").eq("job_id", id);
+  const res = data.map((datum) => datum.phase_name);
+  return res;
+}
+
+async function addRow(jobID, rowObj) {
   const teamRes = await supabase
     .from("team_members")
     .insert({ name: rowObj.teamMember })
     .select();
   const phaseRes = await supabase
     .from("phases")
-    .insert({ phase_name: rowObj.phase, job_id: jobRes.data[0].id })
+    .insert({ phase_name: rowObj.phase, job_id: jobID })
     .select();
   const taskRes = await supabase
     .from("tasks")
@@ -47,14 +68,22 @@ async function getAll() {
   const { data } = await supabase.from("jobs").select(`
   id,
   job_name,
-  phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))`);
+  phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))
+  `);
   return data;
 }
 
-async function deleteRow() {
-  const { error } = await supabase.from("jobs").delete().eq("id", "141");
-  console.log("error", error);
+async function deleteByID(id) {
+  const { error } = await supabase.from("jobs").delete().eq("id", id);
   return error;
 }
 
-export { addRow, getAll, deleteRow, addJob };
+export {
+  addRow,
+  getAll,
+  deleteByID,
+  addJob,
+  getJobByID,
+  getAllByJobID,
+  getAllPhasesByJobID,
+};

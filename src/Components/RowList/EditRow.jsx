@@ -1,32 +1,39 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { addRow, getAll } from "../../supabase-utils";
-import { handleRestructureResponse } from "../../data";
+import {
+  addRow,
+  getAllByJobID,
+  getAllPhasesByJobID,
+} from "../../supabase-utils";
 
-// eslint-disable-next-line react/prop-types
-export default function EditRow({ setResponseArray }) {
-  const [job, setJob] = useState("");
+export default function EditRow({ setResponse, jobByID }) {
   const [phase, setPhase] = useState("");
   const [teamMember, setTeamMember] = useState("");
   const [hours, setHours] = useState("");
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
 
+  const jobID = jobByID.data[0].id;
+
   async function handleAddRow() {
     const rowObj = {
-      job,
       phase,
       teamMember,
       hours,
       task,
       date,
     };
-    if (Object.values(rowObj).every((prop) => prop)) {
-      await addRow(rowObj);
-      const res = await getAll();
-      const restructuredRes = handleRestructureResponse(res);
-      setResponseArray(restructuredRes);
 
-      setJob("");
+    const phaseNameArray = await getAllPhasesByJobID(jobID);
+    if (phaseNameArray.includes(phase)) {
+      return alert("Phase already exists");
+    }
+
+    if (Object.values(rowObj).every((prop) => prop)) {
+      await addRow(jobID, rowObj);
+      const res = await getAllByJobID(jobID);
+      setResponse(res);
+
       setPhase("");
       setTask("");
       setTeamMember("");
@@ -39,7 +46,6 @@ export default function EditRow({ setResponseArray }) {
 
   return (
     <div className="row" id="edit-row">
-      <input value={job} onChange={(e) => setJob(e.target.value)} type="text" />
       <input
         value={phase}
         onChange={(e) => setPhase(e.target.value)}

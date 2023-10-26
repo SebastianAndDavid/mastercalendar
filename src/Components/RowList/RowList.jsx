@@ -1,17 +1,20 @@
+/* eslint-disable react/prop-types */
+import {} from "../../supabase-utils";
 import EditRow from "./EditRow";
 import Row from "./Row";
-import { useState } from "react";
 
-export default function RowList() {
-  const [responseArray, setResponseArray] = useState([]);
+export default function RowList({ jobByID, response, setResponse }) {
+  console.log("response", response);
 
-  console.log("responseArray", responseArray);
+  const phasesArray = response.data[0].phases;
+  console.log("response.data[0].phases", phasesArray);
+
   return (
     <div>
-      {responseArray.map((responseObj) => {
-        return <Row key={responseObj.job.id} obj={responseObj} />;
+      {phasesArray.map((phase) => {
+        return <Row key={phase.id} phase={phase} />;
       })}
-      <EditRow setResponseArray={setResponseArray} />
+      <EditRow setResponse={setResponse} jobByID={jobByID} />
     </div>
   );
 }

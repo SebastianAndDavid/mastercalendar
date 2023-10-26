@@ -1,17 +1,37 @@
 /* eslint-disable react/prop-types */
-import { deleteRow } from "../../supabase-utils";
+// import { deleteByID } from "../../supabase-utils";
 import "./Row.css";
-export default function Row({ obj }) {
+export default function Row({ phase }) {
+  console.log("phase", phase);
   return (
     <div className="row" id="row">
-      <div>{obj.job.job}</div>
-      <div>{obj.phase.name}</div>
-      <div>{obj.members.member}</div>
-      <div>{obj.hours.hours}</div>
-      <div>{obj.task.name}</div>
-      <div>{obj.date.date}</div>
-      <button>Edit</button>
-      <button onClick={() => deleteRow()}>Delete</button>
+      <div>{phase.phase_name}</div>
+      <div>
+        {phase.tasks.map((task) => {
+          return task.hours.map((hour) => (
+            <p key={hour.id + 7}>{hour.team_members.name}</p>
+          ));
+        })}
+      </div>
+      <div>
+        {phase.tasks.map((task) => {
+          return task.hours.map((hour) => (
+            <p key={hour.id}>{hour.estimated_hours}</p>
+          ));
+        })}
+      </div>
+      <div>
+        {phase.tasks.map((task) => {
+          return <p key={task.id}>{task.task_name}</p>;
+        })}
+      </div>
+      <div>
+        {phase.tasks.map((task) => {
+          return task.completion_date.map((date) => (
+            <p key={date.id}>{date.date}</p>
+          ));
+        })}
+      </div>
     </div>
   );
 }
