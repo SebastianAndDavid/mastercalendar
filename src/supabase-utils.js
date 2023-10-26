@@ -21,10 +21,10 @@ async function getAllByJobID(id) {
     .from("jobs")
     .select(
       `
-    id,
-    job_name,
-    phases:phases (id, phase_name, tasks:tasks (id, task_name, hours:hours (id, estimated_hours, team_members:team_members (id, name)), completion_date:completion_date (id, date)))
-  `
+      id,
+      job_name,
+      phases:phases (id, phase_name, tasks:tasks (id, task_name, hours:hours (id, estimated_hours, team_members:team_members (id, name)), completion_date:completion_date (id, date)))
+    `
     )
     .eq("id", id);
   return { data };

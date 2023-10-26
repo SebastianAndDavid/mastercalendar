@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import "./JobList.css";
 import { addJob, getAll } from "../../supabase-utils";
@@ -20,6 +20,10 @@ export default function JobList({ handleGetJobByID }) {
     setInputValue("");
     handleJobResponse();
   }
+
+  useEffect(() => {
+    handleJobResponse();
+  }, []);
 
   return (
     <>

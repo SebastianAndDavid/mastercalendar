@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { addRow, getAllByJobID } from "../../supabase-utils";
-import { handleRestructureResponse } from "../../data";
 
 export default function EditRow({ setResponseArray, jobByID }) {
   const [phase, setPhase] = useState("");
@@ -24,8 +23,7 @@ export default function EditRow({ setResponseArray, jobByID }) {
       await addRow(jobID, rowObj);
       const res = await getAllByJobID(jobID);
       console.log("res", res);
-      const restructuredRes = handleRestructureResponse(res);
-      setResponseArray(restructuredRes);
+      setResponseArray(res);
 
       setPhase("");
       setTask("");
