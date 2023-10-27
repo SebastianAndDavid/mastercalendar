@@ -4,6 +4,9 @@
 }
 .row div {
   border: 1px solid teal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .row input {

@@ -22,10 +22,8 @@ function App() {
     <>
       <header>
         <h1>Taskify</h1>
-        {toggleDetail ? (
-          <button onClick={() => setToggleDetail(false)}>Show Details</button>
-        ) : (
-          <button onClick={() => setToggleDetail(true)}>Show List</button>
+        {toggleDetail && (
+          <button onClick={() => setToggleDetail(false)}>See Jobs List</button>
         )}
       </header>
       <div className="app">

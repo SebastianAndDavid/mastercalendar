@@ -2,7 +2,6 @@
 // import { deleteByID } from "../../supabase-utils";
 import "./Row.css";
 export default function Row({ phase }) {
-  console.log("phase", phase);
   return (
     <div className="row" id="row">
       <div>{phase.phase_name}</div>
