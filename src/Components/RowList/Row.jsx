@@ -2,9 +2,19 @@
 // import { deleteByID } from "../../supabase-utils";
 import { useState } from "react";
 import "./Row.css";
+import { upDatePhaseByID } from "../../supabase-utils";
 export default function Row({ phase }) {
   const [isEditingPhase, setIsEditingPhase] = useState(false);
   const [inputValue, setInputValue] = useState(phase.phase_name);
+  const [phaseName, setPhaseName] = useState(phase.phase_name);
+
+  async function handleUpdate() {
+    const res = await upDatePhaseByID(inputValue, phase.id);
+    console.log("res", res);
+    setPhaseName(res[0].phase_name);
+    setIsEditingPhase(false);
+    return res;
+  }
   return (
     <div className="row" id="row">
       {isEditingPhase ? (
@@ -13,10 +23,10 @@ export default function Row({ phase }) {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button>Update</button>
+          <button onClick={() => handleUpdate()}>Update</button>
         </div>
       ) : (
-        <div onClick={() => setIsEditingPhase(true)}>{phase.phase_name}</div>
+        <div onClick={() => setIsEditingPhase(true)}>{phaseName}</div>
       )}
       <div>
         {phase.tasks.map((task) => {

@@ -73,11 +73,11 @@ async function getAll() {
   return data;
 }
 
-async function upDatePhaseByID() {
+async function upDatePhaseByID(value, id) {
   const { data } = await supabase
     .from("phases")
-    .update({ other_column: "otherValue" })
-    .eq("some_column", "someValue")
+    .update({ phase_name: value })
+    .eq("id", id)
     .select();
 
   return data;

@@ -2,7 +2,6 @@ import { getAllByJobID } from "../../supabase-utils";
 
 /* eslint-disable react/prop-types */
 export default function JobCard({ job, handleGetJobByID, setResponse }) {
-  console.log("job", job);
   async function handleClick() {
     const res = await getAllByJobID(job.id);
     setResponse(res);
