@@ -13,6 +13,10 @@
   border: 1px solid teal;
 }
 
+.edit-cell {
+  height: 56px;
+}
+
 .edit-cell input {
   border-top: 0;
   border-right: 0;
