@@ -12,3 +12,16 @@
 .row input {
   border: 1px solid teal;
 }
+
+.edit-cell input {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  height: 32px;
+  /* border-radius: 8px; */
+  margin-right: 0.5em;
+}
+
+.edit-cell button {
+  height: 36px;
+}

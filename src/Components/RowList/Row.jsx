@@ -3,14 +3,20 @@
 import { useState } from "react";
 import "./Row.css";
 export default function Row({ phase }) {
-  const [isEditing, setIsEditing] = useState(false);
-  // const [inputValue, setInputValue] = useState(phase.phase_name);
+  const [isEditingPhase, setIsEditingPhase] = useState(false);
+  const [inputValue, setInputValue] = useState(phase.phase_name);
   return (
     <div className="row" id="row">
-      {isEditing ? (
-        <input placeholder="hi" />
+      {isEditingPhase ? (
+        <div className="edit-cell">
+          <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <button>Update</button>
+        </div>
       ) : (
-        <div onClick={() => setIsEditing(true)}>{phase.phase_name}</div>
+        <div onClick={() => setIsEditingPhase(true)}>{phase.phase_name}</div>
       )}
       <div>
         {phase.tasks.map((task) => {
