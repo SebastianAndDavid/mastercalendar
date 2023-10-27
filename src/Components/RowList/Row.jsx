@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 // import { deleteByID } from "../../supabase-utils";
+import { useState } from "react";
 import "./Row.css";
 export default function Row({ phase }) {
+  const [isEditing, setIsEditing] = useState(false);
+  // const [inputValue, setInputValue] = useState(phase.phase_name);
   return (
     <div className="row" id="row">
-      <div>{phase.phase_name}</div>
+      {isEditing ? (
+        <input placeholder="hi" />
+      ) : (
+        <div onClick={() => setIsEditing(true)}>{phase.phase_name}</div>
+      )}
       <div>
         {phase.tasks.map((task) => {
           return task.hours.map((hour) => (

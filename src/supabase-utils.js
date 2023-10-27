@@ -73,6 +73,16 @@ async function getAll() {
   return data;
 }
 
+async function upDatePhaseByID() {
+  const { data } = await supabase
+    .from("phases")
+    .update({ other_column: "otherValue" })
+    .eq("some_column", "someValue")
+    .select();
+
+  return data;
+}
+
 async function deleteByID(id) {
   const { error } = await supabase.from("jobs").delete().eq("id", id);
   return error;
@@ -86,4 +96,5 @@ export {
   getJobByID,
   getAllByJobID,
   getAllPhasesByJobID,
+  upDatePhaseByID,
 };

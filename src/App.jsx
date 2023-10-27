@@ -10,8 +10,6 @@ function App() {
   const [jobByID, setJobByID] = useState({});
   const [response, setResponse] = useState({});
 
-  console.log("jobByID", jobByID);
-
   async function handleGetJobByID(id) {
     const res = await getJobByID(id);
     setJobByID(res);

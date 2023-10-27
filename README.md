@@ -26,5 +26,8 @@ We can shape our data how we want - make mapping easier - data.js restructure (m
 
 WIP
 
-- Edit/update (back/front)
+- Edit/update (back/front) Row
 - List to display jobcards w/ extra info
+- Add a row to an existing Phase, it adds that info to the existing Row
+- Phase = true update
+- Everything else = insert
