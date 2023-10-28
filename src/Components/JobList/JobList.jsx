@@ -15,6 +15,9 @@ export default function JobList({ handleGetJobByID, setResponse }) {
   }
 
   async function handleAddJob() {
+    if (!inputValue) {
+      return alert("Please enter a job name");
+    }
     await addJob(inputValue);
     setInputValue("");
     handleJobResponse();

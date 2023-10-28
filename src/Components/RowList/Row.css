@@ -13,7 +13,16 @@
   border: 1px solid teal;
 }
 
+.team-info {
+  flex-direction: column;
+}
+
+.team-info p {
+  margin: 0;
+}
+
 .edit-cell {
+  display: flex;
   height: 56px;
 }
 

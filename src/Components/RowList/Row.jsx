@@ -2,8 +2,12 @@
 // import { deleteByID } from "../../supabase-utils";
 import { useState } from "react";
 import "./Row.css";
-import { addTeamMemberInfo, upDatePhaseByID } from "../../supabase-utils";
-export default function Row({ phase }) {
+import {
+  addTeamMemberInfo,
+  getAllByJobID,
+  upDatePhaseByID,
+} from "../../supabase-utils";
+export default function Row({ phase, jobByID, setResponse }) {
   const [isEditingPhase, setIsEditingPhase] = useState(false);
   const [isEditingTeamInfo, setIsEditingTeamInfo] = useState(false);
   const [inputValue, setInputValue] = useState(phase.phase_name);
@@ -12,6 +16,8 @@ export default function Row({ phase }) {
   const [taskInputValue, setTaskInputValue] = useState("");
   const [dateInputValue, setDateInputValue] = useState("");
   const [phaseName, setPhaseName] = useState(phase.phase_name);
+
+  const jobID = jobByID.data[0].id;
 
   async function handleUpdate() {
     const res = await upDatePhaseByID(inputValue, phase.id);
@@ -30,7 +36,14 @@ export default function Row({ phase }) {
 
     if (Object.values(rowObj).every((prop) => prop)) {
       await addTeamMemberInfo(phase.id, rowObj);
+      const res = await getAllByJobID(jobID);
+      setResponse(res);
       setIsEditingTeamInfo(false);
+
+      setTeamInputValue("");
+      setHoursInputValue("");
+      setTaskInputValue("");
+      setDateInputValue("");
     } else {
       alert("All fields are required");
     }
@@ -52,26 +65,26 @@ export default function Row({ phase }) {
 
       {!isEditingTeamInfo ? (
         <>
-          <div onClick={() => setIsEditingTeamInfo(true)}>
+          <div onClick={() => setIsEditingTeamInfo(true)} className="team-info">
             {phase.tasks.map((task) => {
               return task.hours.map((hour) => (
                 <p key={hour.id + 7}>{hour.team_members.name}</p>
               ));
             })}
           </div>
-          <div>
+          <div className="team-info">
             {phase.tasks.map((task) => {
               return task.hours.map((hour) => (
                 <p key={hour.id}>{hour.estimated_hours}</p>
               ));
             })}
           </div>
-          <div>
+          <div className="team-info">
             {phase.tasks.map((task) => {
               return <p key={task.id}>{task.task_name}</p>;
             })}
           </div>
-          <div>
+          <div className="team-info">
             {phase.tasks.map((task) => {
               return task.completion_date.map((date) => (
                 <p key={date.id}>{date.date}</p>

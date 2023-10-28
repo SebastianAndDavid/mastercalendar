@@ -9,7 +9,14 @@ export default function RowList({ jobByID, response, setResponse }) {
   return (
     <div>
       {phasesArray.map((phase) => {
-        return <Row key={phase.id} phase={phase} />;
+        return (
+          <Row
+            key={phase.id}
+            phase={phase}
+            setResponse={setResponse}
+            jobByID={jobByID}
+          />
+        );
       })}
       <EditRow setResponse={setResponse} jobByID={jobByID} />
     </div>
