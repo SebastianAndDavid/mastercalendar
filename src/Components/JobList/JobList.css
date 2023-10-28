@@ -13,12 +13,29 @@
   display: flex;
   margin-top: 17.5vh;
 }
+
 .jobcard {
-  height: 25vh;
+  /* height: 25vh; */
   width: 15vw;
   background-color: cornsilk;
+  border: 0.2em solid #96efda;
+  border-radius: 8px;
   margin: 10px;
 }
+
+.jobcard h3 {
+  margin-bottom: 0;
+}
+
+.jobcard-phases {
+  font-size: large;
+}
+
+.jobcard-phases p {
+  margin: 0;
+}
+
 .jobcard:hover {
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   cursor: pointer;
 }

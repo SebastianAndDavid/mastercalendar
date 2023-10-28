@@ -64,12 +64,45 @@ async function addRow(jobID, rowObj) {
   return hoursRes;
 }
 
+async function addTeamMemberInfo(phaseID, rowObj) {
+  const teamRes = await supabase
+    .from("team_members")
+    .insert({ name: rowObj.teamMember })
+    .select();
+  const taskRes = await supabase
+    .from("tasks")
+    .insert({ task_name: rowObj.task, phase_id: phaseID })
+    .select();
+  await supabase
+    .from("completion_date")
+    .insert({ date: rowObj.date, task_id: taskRes.data[0].id });
+  const hoursRes = await supabase
+    .from("hours")
+    .insert({
+      estimated_hours: rowObj.hours,
+      member_id: teamRes.data[0].id,
+      task_id: taskRes.data[0].id,
+    })
+    .select();
+  return hoursRes;
+}
+
 async function getAll() {
   const { data } = await supabase.from("jobs").select(`
   id,
   job_name,
   phases (id, phase_name, tasks (id, task_name, hours (id, estimated_hours, team_members (id, name)), completion_date (id, date)))
   `);
+  return data;
+}
+
+async function upDatePhaseByID(value, id) {
+  const { data } = await supabase
+    .from("phases")
+    .update({ phase_name: value })
+    .eq("id", id)
+    .select();
+
   return data;
 }
 
@@ -86,4 +119,6 @@ export {
   getJobByID,
   getAllByJobID,
   getAllPhasesByJobID,
+  upDatePhaseByID,
+  addTeamMemberInfo,
 };

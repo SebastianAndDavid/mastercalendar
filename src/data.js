@@ -44,6 +44,7 @@ function handleJobListResponse(response) {
         member: res.phases[0]?.tasks[0]?.hours[0]?.team_members.name,
       },
     };
+
     return responseObj;
   });
 }

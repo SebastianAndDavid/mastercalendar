@@ -4,15 +4,19 @@ import EditRow from "./EditRow";
 import Row from "./Row";
 
 export default function RowList({ jobByID, response, setResponse }) {
-  console.log("response", response);
-
   const phasesArray = response.data[0].phases;
-  console.log("response.data[0].phases", phasesArray);
 
   return (
     <div>
       {phasesArray.map((phase) => {
-        return <Row key={phase.id} phase={phase} />;
+        return (
+          <Row
+            key={phase.id}
+            phase={phase}
+            setResponse={setResponse}
+            jobByID={jobByID}
+          />
+        );
       })}
       <EditRow setResponse={setResponse} jobByID={jobByID} />
     </div>

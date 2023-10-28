@@ -10,8 +10,6 @@ function App() {
   const [jobByID, setJobByID] = useState({});
   const [response, setResponse] = useState({});
 
-  console.log("jobByID", jobByID);
-
   async function handleGetJobByID(id) {
     const res = await getJobByID(id);
     setJobByID(res);
@@ -22,10 +20,8 @@ function App() {
     <>
       <header>
         <h1>Taskify</h1>
-        {toggleDetail ? (
-          <button onClick={() => setToggleDetail(false)}>Show Details</button>
-        ) : (
-          <button onClick={() => setToggleDetail(true)}>Show List</button>
+        {toggleDetail && (
+          <button onClick={() => setToggleDetail(false)}>See Jobs List</button>
         )}
       </header>
       <div className="app">

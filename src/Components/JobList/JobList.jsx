@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 import "./JobList.css";
 import { addJob, getAll } from "../../supabase-utils";
-import { handleJobListResponse } from "../../data";
+// import { handleJobListResponse } from "../../data";
 
 export default function JobList({ handleGetJobByID, setResponse }) {
   const [inputValue, setInputValue] = useState("");
@@ -11,11 +11,13 @@ export default function JobList({ handleGetJobByID, setResponse }) {
 
   async function handleJobResponse() {
     const response = await getAll();
-    const updatedRes = await handleJobListResponse(response);
-    setJobResponse(updatedRes);
+    setJobResponse(response);
   }
 
   async function handleAddJob() {
+    if (!inputValue) {
+      return alert("Please enter a job name");
+    }
     await addJob(inputValue);
     setInputValue("");
     handleJobResponse();
