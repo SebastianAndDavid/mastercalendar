@@ -16,6 +16,7 @@ function App() {
     setToggleDetail(true);
     return res;
   }
+
   return (
     <>
       <header>
